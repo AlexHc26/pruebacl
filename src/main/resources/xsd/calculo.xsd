@@ -1,0 +1,45 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://www.cibertec.edu.pe/ws/objects"
+           targetNamespace="http://www.cibertec.edu.pe/ws/objects"
+           elementFormDefault="qualified">
+
+    <!-- Request -->
+    <xs:element name="CalculateSquaresAndHalvesRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <!-- Lista de números entre 15 y 70 -->
+                <xs:element name="number" type="xs:integer" minOccurs="1" maxOccurs="unbounded">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:integer">
+                            <xs:minInclusive value="15"/>
+                            <xs:maxInclusive value="70"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Response -->
+    <xs:element name="CalculateSquaresAndHalvesResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <!-- Lista de resultados -->
+                <xs:element name="results" type="tns:NumberResult" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Tipo de datos para el resultado -->
+    <xs:complexType name="NumberResult">
+        <xs:sequence>
+            <!-- Número original -->
+            <xs:element name="number" type="xs:integer"/>
+            <!-- Cuadrado del número -->
+            <xs:element name="square" type="xs:integer"/>
+            <!-- Mitad del número -->
+            <xs:element name="half" type="xs:float"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
